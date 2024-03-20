@@ -1,0 +1,27 @@
+---
+- name: Deploy Service Mesh across Multi-Cloud Infrastructure
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Include cloud-specific provisioning
+      include_tasks: "{{ item }}"
+      loop:
+        - provision_aws.yml
+        - provision_gcp.yml
+        - provision_azure.yml
+
+    - name: Setup Istio Service Mesh
+      import_role:
+        name: istio
+      tags: istio
+
+    - name: Setup Monitoring
+      import_role:
+        name: monitoring
+      tags: monitoring
+
+    - name: Apply Security Configurations
+      import_role:
+        name: security
+      tags: security

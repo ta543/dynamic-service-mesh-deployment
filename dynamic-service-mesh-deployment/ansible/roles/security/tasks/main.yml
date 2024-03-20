@@ -1,0 +1,1 @@
+---\n- name: Apply Security Configurations\n  debug:\n    msg: "This task will apply security configurations."

@@ -1,0 +1,7 @@
+---
+- name: Apply Istio rate limiting configuration
+  kubernetes.core.k8s:
+    kubeconfig: "{{ kubeconfig_path }}"
+    state: present
+    src: "{{ rate_limiting_policy_file }}"
+  when: rate_limiting_policy_file is defined

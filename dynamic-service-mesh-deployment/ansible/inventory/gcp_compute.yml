@@ -1,0 +1,7 @@
+plugin: gcp_compute
+regions:
+  - us-central1
+projects:
+  - dynamic-service-mesh-deployment-7327832
+auth_kind: serviceaccount
+service_account_file: /etc/ansible/keys/gcp-service-account.json

@@ -1,0 +1,1 @@
+---\n- name: Install Istio\n  debug:\n    msg: "This task will install Istio."

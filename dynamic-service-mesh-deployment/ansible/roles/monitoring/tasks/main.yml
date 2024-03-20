@@ -1,0 +1,1 @@
+---\n- name: Setup Monitoring Tools\n  debug:\n    msg: "This task will set up monitoring tools like Prometheus and Grafana."

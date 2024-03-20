@@ -1,0 +1,33 @@
+apiVersion: config.istio.io/v1alpha2
+kind: handler
+metadata:
+  name: quotahandler
+spec:
+  compiledAdapter: memquota
+  params:
+    quotas:
+    - name: requestcountquota.instance.istio-system
+      maxAmount: 100
+      validDuration: 1s
+---
+apiVersion: config.istio.io/v1alpha2
+kind: instance
+metadata:
+  name: requestcountquota
+spec:
+  compiledTemplate: quota
+  params:
+    dimensions:
+      source: request.headers["x-forwarded-for"] | "unknown"
+      destination: destination.labels["app"] | destination.service.host | "unknown"
+      destinationVersion: destination.labels["version"] | "unknown"
+---
+apiVersion: config.istio.io/v1alpha2
+kind: rule
+metadata:
+  name: quota
+spec:
+  actions:
+  - handler: quotahandler
+    instances:
+    - requestcountquota

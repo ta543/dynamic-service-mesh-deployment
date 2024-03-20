@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+  - name: Placeholder for hybrid cloud integration
+    debug:
+      msg: "Hybrid cloud integration tasks go here."

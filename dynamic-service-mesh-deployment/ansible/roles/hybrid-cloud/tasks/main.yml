@@ -1,0 +1,4 @@
+---
+- name: Integrate on-premise Kubernetes with cloud Kubernetes clusters
+  debug:
+    msg: "This task will handle hybrid cloud integration."

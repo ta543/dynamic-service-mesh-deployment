@@ -1,0 +1,9 @@
+---
+- name: Apply Istio Authentication Policies
+  kubernetes.core.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    definition: "{{ lookup('template', 'auth-policy.yml.j2') }}"
+  vars:
+    jwt_issuer: "testing@secure.istio.io"
+    jwks_uri: "https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json"

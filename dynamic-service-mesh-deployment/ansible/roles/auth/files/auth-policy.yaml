@@ -1,0 +1,15 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: "RequestAuthentication"
+metadata:
+  name: "dynamic-mesh-auth"
+  namespace: "istio-system"
+spec:
+  selector:
+    matchLabels:
+      app: dynamic-mesh-auth
+  jwtRules:
+  - issuer: "https://ta543.com/issuer"
+    jwksUri: "https://ta543.com/.well-known/jwks.json"
+    audiences:
+    - "dynamic-service-mesh-deployment"
+    - "another-audience-if-needed"
