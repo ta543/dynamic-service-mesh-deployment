@@ -17,29 +17,29 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.0.0
-
-    - name: Terraform Init
-      run: |
-        cd terraform/aws && terraform init
-        cd ../azure && terraform init
-        cd ../gcp && terraform init
-
-    - name: Terraform Validate
-      run: |
-        cd terraform/aws && terraform validate
-        cd ../azure && terraform validate
-        cd ../gcp && terraform validate
-
-    - name: Terraform Apply
-      run: |
-        cd terraform/aws && terraform apply -auto-approve
-        cd ../azure && terraform apply -auto-approve
-        cd ../gcp && terraform apply -auto-approve
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#     - name: Set up Terraform
+#       uses: hashicorp/setup-terraform@v1
+#       with:
+#         terraform_version: 1.0.0
+# 
+#     - name: Terraform Init
+#       run: |
+#         cd terraform/aws && terraform init
+#         cd ../azure && terraform init
+#         cd ../gcp && terraform init
+# 
+#     - name: Terraform Validate
+#       run: |
+#         cd terraform/aws && terraform validate
+#         cd ../azure && terraform validate
+#         cd ../gcp && terraform validate
+# 
+#     - name: Terraform Apply
+#       run: |
+#         cd terraform/aws && terraform apply -auto-approve
+#         cd ../azure && terraform apply -auto-approve
+#         cd ../gcp && terraform apply -auto-approve
+#       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
   ansible:
     name: Ansible Deployment
